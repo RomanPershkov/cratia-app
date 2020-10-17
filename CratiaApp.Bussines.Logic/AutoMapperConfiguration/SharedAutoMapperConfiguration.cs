@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using CratiaApp.Bussines.Logic.DTOs;
+using CratiaApp.DataAccess.Entities;
+using System.Linq;
 
 namespace CratiaApp.Bussines.Logic.AutoMapperConfiguration
 {
@@ -12,12 +15,11 @@ namespace CratiaApp.Bussines.Logic.AutoMapperConfiguration
 
         private void RegisterToDTOMappings(IMapperConfigurationExpression cfg)
         {
-            cfg.CreateMap<Test, ExamTestDTO>()
-                .ForMember(dto => dto.Answers, t => t.PreCondition(d => d.Type != TestType.OpenAnswer));
 
-            cfg.CreateMap<Answer, ExamAnswerDTO>();
+            cfg.CreateMap<Boxer, BoxerDTO>()                
+                .ForMember(dto => dto.Rank, b => b.MapFrom(c => c.Battles.Where(d => d.Winner == b).Count() / c.Battles.Count));
 
-            cfg.CreateMap<Payment, PaymentInfo>()
+            /*cfg.CreateMap<Payment, PaymentInfo>()
                 .ForMember(dto => dto.PaymentType, p => p.MapFrom(d => d.Type))
                 .ForMember(dto => dto.PaymentStatus, p => p.MapFrom(d => d.Status))
                 .ForMember(dto => dto.Product, p => p.MapFrom(d => d.Product.Name))
@@ -39,7 +41,7 @@ namespace CratiaApp.Bussines.Logic.AutoMapperConfiguration
                 .ForMember(c => c.Score, c => c.MapFrom(d => d.Exam.Score ?? 0))
                 .ForMember(c => c.MaxScore, c => c.MapFrom(d => d.Exam.MaxScore))
                 .ForMember(c => c.Date, c => c.MapFrom(d => d.Exam.Start.ToString("dd.MM.yyyy")))
-                .ForMember(c => c.Number, c => c.MapFrom(d => d.UniqueNumber));
+                .ForMember(c => c.Number, c => c.MapFrom(d => d.UniqueNumber));*/
         }
 
         private void RegisterToEFEntitiesMappings(IMapperConfigurationExpression cfg)

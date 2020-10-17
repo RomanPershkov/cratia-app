@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using CratiaApp.Bussines.Logic.Services;
+using CratiaApp.Web.App_Start;
+using CratiaApp.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +12,20 @@ namespace CratiaApp.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private static readonly IMapper _mapper = AutoMapperConfig.Mapper;
+        private readonly IBoxerService _boxerService;
+
+        public HomeController(IBoxerService boxerService)
+        {
+            _boxerService = boxerService;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var boxers = _boxerService.GetAllBoxers();
+            var model = _mapper.Map<IEnumerable<BoxerViewModel>>(boxers);
+
+            return View(model);
         }
 
         public ActionResult About()

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F03F9ED8-D402-4B6D-9BF9-C31CFCE30E5E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>CratiaApp.Bussines.Logic</RootNamespace>
     <AssemblyName>CratiaApp.Bussines.Logic</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -54,6 +57,7 @@
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="AutoMapperConfiguration\SharedAutoMapperConfiguration.cs" />
+    <Compile Include="DTOs\BattleDTO.cs" />
     <Compile Include="DTOs\BoxerDTO.cs" />
     <Compile Include="Services\BattleService.cs" />
     <Compile Include="Services\BoxerService.cs" />

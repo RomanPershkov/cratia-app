@@ -1,8 +1,4 @@
 using System;
-using CratiaApp.Business.Logic.Services.Common;
-using CratiaApp.Business.Logic.Services.Common.Certificates;
-using CratiaApp.Business.Logic.Services.Common.Discounts;
-using CratiaApp.Business.Logic.Services.Common.Payments;
 using CratiaApp.Bussines.Logic.Services;
 using CratiaApp.DataAccess.Context;
 using CratiaApp.DataAccess.UnitOfWork;
