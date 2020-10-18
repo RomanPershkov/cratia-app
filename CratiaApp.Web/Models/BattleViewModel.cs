@@ -1,19 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CratiaApp.Web.Models
 {
     public class BattleViewModel
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Please input value")]
         public DateTime Date { get; set; }
 
-        public BoxerViewModel BoxerWinner { get; set; }
+        [Required(ErrorMessage = "Please input value")]
+        public string Winner { get; set; }
 
-        public BoxerViewModel BoxerLoser { get; set; }
+        [Required(ErrorMessage = "Please input value")]
+        public string Loser { get; set; }
 
         [Required(ErrorMessage = "Please input value")]
         public int Rounds { get; set; }

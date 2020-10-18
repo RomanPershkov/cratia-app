@@ -23,7 +23,7 @@ namespace CratiaApp.Web.Controllers
         public ActionResult Index()
         {
             var boxers = _boxerService.GetAllBoxers();
-            var model = _mapper.Map<IEnumerable<BoxerViewModel>>(boxers);
+            var model = _mapper.Map<List<BoxerViewModel>>(boxers);
 
             return View(model);
         }

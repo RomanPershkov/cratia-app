@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="Context\CratiaAppDbContext.cs" />
     <Compile Include="Entities\Battle.cs" />
-    <Compile Include="Entities\Boxer.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="UnitOfWork\CratiaAppUnitOfWork.cs" />

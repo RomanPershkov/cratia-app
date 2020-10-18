@@ -1,21 +1,14 @@
 ﻿using CratiaApp.Bussines.Logic.DTOs;
 using CratiaApp.DataAccess.Entities;
 using CratiaApp.DataAccess.UnitOfWork;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CratiaApp.Bussines.Logic.Services
 {
     public interface IBoxerService
     {
-        void AddBoxer(BoxerDTO dto);
-        IEnumerable<BoxerDTO> GetAllBoxers();
-        /*BoxerDTO GetBoxerByName(string name);
-        BoxerDTO GetBoxerBySurname(string surname);
-        BoxerDTO GetBoxerByFullName(string name, string surname);*/
+        IEnumerable<BoxerDTO> GetAllBoxers();        
     }
     public class BoxerService : ServiceBase, IBoxerService
     {
@@ -23,34 +16,36 @@ namespace CratiaApp.Bussines.Logic.Services
 
         public IEnumerable<BoxerDTO> GetAllBoxers()
         {
-            var boxers = _unitOfWork.GetRepository<Boxer>().GetAllIncluding(b => b.Battles).ToList();
+            var battles = _unitOfWork.GetRepository<Battle>()
+                .GetAll()
+                .ToList();
 
-            return _mapper.Map(boxers, new List<BoxerDTO>());
+            List<BoxerDTO> boxers = new List<BoxerDTO>();
+
+            for (int i = 0; i < battles.Count; i++)
+            {
+                var winner = boxers.SingleOrDefault(b => b.Name == battles[i].Winner);
+                if (winner == null)
+                {
+                    boxers.Add(new BoxerDTO { Name = battles[i].Winner, Wins = 1, Loses = 0 });
+                } 
+                else 
+                { 
+                    boxers.Single(b => b.Name == battles[i].Winner).Wins += 1; 
+                }
+
+                var loser = boxers.SingleOrDefault(b => b.Name == battles[i].Loser);
+                if (loser == null)
+                {
+                    boxers.Add(new BoxerDTO { Name = battles[i].Loser, Wins = 0, Loses = 1 });
+                }
+                else
+                {
+                    boxers.Single(b => b.Name == battles[i].Loser).Loses += 1;
+                }
+            }
+
+            return boxers;
         }
-        
-        public void AddBoxer(BoxerDTO dto)
-        {
-            var boxer = new Boxer();
-
-            _mapper.Map(dto, boxer);
-
-            _unitOfWork.GetRepository<Boxer>().Add(boxer);
-            _unitOfWork.SaveChanges();
-        }
-                
-        /*public BoxerDTO GetBoxerByName(string name)
-        {
-            return _unitOfWork.GetRepository<Boxer>().GetAllIncluding("Battles").Single(b => b.Name == name);                        
-        }
-
-        public BoxerDTO GetBoxerBySurname(string surname)
-        {
-            return _unitOfWork.GetRepository<Boxer>().GetAllIncluding("Battles").Single(b => b.Surname == surname);
-        }
-
-        public BoxerDTO GetBoxerByFullName(string name, string surname)
-        {
-            return _unitOfWork.GetRepository<Boxer>().GetAllIncluding("Battles").Single(b => b.Name == name && b.Surname == surname);
-        }*/
     }
 }

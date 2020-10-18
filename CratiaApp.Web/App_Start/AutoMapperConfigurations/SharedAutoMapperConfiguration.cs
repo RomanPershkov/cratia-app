@@ -21,9 +21,8 @@ namespace CratiaApp.Web.App_Start.AutoMapperConfigurations
 
         private void RegisterToDTOMappings(IMapperConfigurationExpression cfg)
         {
-            cfg.CreateMap<BoxerViewModel, BoxerDTO>()/*
-                .ForMember(d => d.Birthdate, vm => vm.PreCondition(d => string.IsNullOrEmpty(d.Birthdate) == false))
-                .ForMember(d => d.Birthdate, vm => vm.MapFrom(d => DateTime.ParseExact(d.Birthdate, "dd.MM.yyyy", new CultureInfo("ru-RU"))))*/;
+            cfg.CreateMap<BoxerViewModel, BoxerDTO>();
+            cfg.CreateMap<BattleViewModel, BattleDTO>();
         }
     }
 }
