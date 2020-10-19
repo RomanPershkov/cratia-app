@@ -42,10 +42,19 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202010182326202_InitialCreate.resx">
+      <DependentUpon>202010182326202_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\CratiaAppDbContext.cs" />
     <Compile Include="Entities\Battle.cs" />
+    <Compile Include="Migrations\202010182326202_InitialCreate.cs" />
+    <Compile Include="Migrations\202010182326202_InitialCreate.designer.cs">
+      <DependentUpon>202010182326202_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="UnitOfWork\CratiaAppUnitOfWork.cs" />

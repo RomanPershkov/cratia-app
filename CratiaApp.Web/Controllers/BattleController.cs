@@ -3,6 +3,7 @@ using CratiaApp.Bussines.Logic.DTOs;
 using CratiaApp.Bussines.Logic.Services;
 using CratiaApp.Web.App_Start;
 using CratiaApp.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -39,11 +40,31 @@ namespace CratiaApp.Web.Controllers
 
             return "Battle created successfully";
         }
+        
+        
+        public ActionResult EditBattle(Guid id)
+        {
+            var dto = _battleService.GetBattleById(id);
+            var model = _mapper.Map<BattleViewModel>(dto);
+
+            return View(model);
+        }
 
         [HttpPost]
-        public ActionResult EditBattle()
+        public string EditBattle(BattleViewModel model)
         {
-            return View();
+            var battle = _mapper.Map<BattleDTO>(model);
+            _battleService.EditBattle(battle);
+
+            return "Battle was edited successfully";
+        }
+
+        [HttpPost]
+        public string DeleteBattle(Guid id)
+        {
+            _battleService.DeleteBattle(id);
+
+            return "Battle was deleted successfully";
         }
     }
 }

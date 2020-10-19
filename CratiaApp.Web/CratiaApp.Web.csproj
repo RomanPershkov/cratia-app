@@ -167,11 +167,13 @@
     <Compile Include="App_Start\UnityActivator.cs" />
     <Compile Include="Controllers\BattleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BattleViewModel.cs" />
     <Compile Include="Models\BoxerViewModel.cs" />
+    <Compile Include="Models\Enums\BattleResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -312,10 +314,11 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Battle\EditBattle.cshtml" />
-    <Content Include="Views\Battle\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Battle\AddBattle.cshtml" />
+    <Content Include="Views\Battle\Index.cshtml" />
+    <Content Include="Views\Battle\EditBattle.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
