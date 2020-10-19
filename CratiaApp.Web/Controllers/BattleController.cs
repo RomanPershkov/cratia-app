@@ -64,7 +64,7 @@ namespace CratiaApp.Web.Controllers
         {
             _battleService.DeleteBattle(id);
 
-            return "Battle was deleted successfully";
+            return "Battle was  successfully";
         }
     }
 }
