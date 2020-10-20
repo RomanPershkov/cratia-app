@@ -33,12 +33,12 @@ namespace CratiaApp.Web.Controllers
         }
 
         [HttpPost]
-        public string AddBAttle(BattleViewModel model)
+        public ActionResult AddBAttle(BattleViewModel model)
         {
             var battle = _mapper.Map<BattleDTO>(model);
             _battleService.AddBattle(battle);
 
-            return "Battle created successfully";
+            return RedirectToAction("Index");
         }
         
         
@@ -51,20 +51,20 @@ namespace CratiaApp.Web.Controllers
         }
 
         [HttpPost]
-        public string EditBattle(BattleViewModel model)
+        public ActionResult EditBattle(BattleViewModel model)
         {
             var battle = _mapper.Map<BattleDTO>(model);
             _battleService.EditBattle(battle);
 
-            return "Battle was edited successfully";
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public string DeleteBattle(Guid id)
+        public ActionResult DeleteBattle(Guid id)
         {
             _battleService.DeleteBattle(id);
 
-            return "Battle was  successfully";
+            return RedirectToAction("Index");
         }
     }
 }
