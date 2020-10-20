@@ -58,8 +58,7 @@ namespace CratiaApp.Web.Controllers
 
             return RedirectToAction("Index");
         }
-
-        [HttpPost]
+                        
         public ActionResult DeleteBattle(Guid id)
         {
             _battleService.DeleteBattle(id);
